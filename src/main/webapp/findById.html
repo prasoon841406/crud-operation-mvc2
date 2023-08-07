@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Find Employee by ID</title>
+</head>
+<body>
+    <h1>Find Employee by ID</h1>
+    <form action="/findById" method="get">
+        <label for="empid">Employee ID:</label>
+        <input type="text" id="empid" name="empid" required>
+        <button type="submit">Find</button>
+    </form>
+    <hr>
+    <div th:if="${employees != null}">
+        <h2>Employee Details</h2>
+        <p><strong>Employee ID:</strong> <span th:text="${employees.empId}"></span></p>
+        <p><strong>Employee Name:</strong> <span th:text="${employees.empName}"></span></p>
+        <!-- Add more <p> tags for other employee attributes if needed -->
+    </div>
+    <div th:if="${employees == null}">
+        <p>No employee found with the provided ID.</p>
+    </div>
+</body>
+</html>

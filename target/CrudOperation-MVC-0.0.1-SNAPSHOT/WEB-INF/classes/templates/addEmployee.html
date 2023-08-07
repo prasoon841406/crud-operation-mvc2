@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+</head>
+<body>
+    <h1>Employee Form</h1>
+    <form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+        <table>
+            <tr>
+                <td>Employee ID:</td>
+                <td><input type="text" th:field="*{empId}" required></td>
+            </tr>
+            <tr>
+                <td>Employee Name:</td>
+                <td><input type="text" th:field="*{empName}" required></td>
+            </tr>
+            <tr>
+                <td>Employee Address:</td>
+                <td><input type="text" th:field="*{empAddress}" required></td>
+            </tr>
+            <tr>
+                <td>Employee Email:</td>
+                <td><input type="email" th:field="*{empEmail}" required></td>
+            </tr>
+            <tr>
+                <td>Employee Mobile:</td>
+                <td><input type="text" th:field="*{empMobile}" required></td>
+            </tr>
+            <tr>
+                <td>Employee Gender:</td>
+                <td>
+                    <select th:field="*{empGender}" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Employee Date of Birth:</td>
+                <td><input type="date" th:field="*{empDOB}" required></td>
+            </tr>
+            <tr>
+                <td>Is Employee Married?</td>
+                <td><input type="checkbox" th:field="*{empMarriedStatus}"></td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

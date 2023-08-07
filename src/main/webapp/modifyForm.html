@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <style>
+    	body{
+    		text-align: center;
+    		
+    		
+    	}
+    	.form{
+    		margin-left: auto;
+            margin-right: auto;
+    	}
+    	.table{
+    		margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+    	}
+    </style>
+</head>
+<body >
+    <h1>Employee Form</h1>
+    <a th:href="@{/showEmployee}">Show Employee</a><br><br>
+    <form th:action="@{/saveUpdateEmployee}" th:object="${employee}" method="post" class="form">
+    
+        <table class="table" border="3">
+            <tr>
+                <td><label for="empId">Employee ID:</label></td>
+                <td><input type="text" id="empId" th:field="*{empId}" required th:value="${employee.empId}"></td>
+            </tr>
+            <tr>
+                <td><label for="empName">Employee Name:</label></td>
+                <td><input type="text" id="empName" th:field="*{empName}" required th:value="${employee.empName}"></td>
+            </tr>
+            <tr>
+                <td><label for="empAddress">Employee Address:</label></td>
+                <td><input type="text" id="empAddress" th:field="*{empAddress}" required th:value="${employee.empAddress}"></td>
+            </tr>
+            <tr>
+                <td><label for="empEmail">Employee Email:</label></td>
+                <td><input type="email" id="empEmail" th:field="*{empEmail}" required th:value="${employee.empEmail}"></td>
+            </tr>
+            <tr>
+                <td><label for="empMobile">Employee Mobile:</label></td>
+                <td><input type="text" id="empMobile" th:field="*{empMobile}" required th:value="${employee.empMobile}"></td>
+            </tr>
+            <tr>
+                <td><label>Employee Gender:</label></td>
+                <td>
+                    <select id="empGender" th:field="*{empGender}" required th:value="${employee.empGender}">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <td><label for="empDOB">Employee Date of Birth:</label></td>
+                <td><input type="date" id="empDOB" name="empDOB" th:field="*{empDOB}" required th:value="${employee.empDOB}"></td>
+            </tr>
+            <!-- <tr>
+                <td><label>Is Employee Married?</label></td>
+                <td>
+                    <input type="radio" id="marriedStatusTrue" th:field="*{empMarriedStatus}" value="true" th:value="${employee.empId}"/>
+                    <label for="marriedStatusTrue">Yes</label>
+                    <input type="radio" id="marriedStatusFalse" th:field="*{empMarriedStatus}" value="false" th:value="${employee.empId}"/>
+                    <label for="marriedStatusFalse">No</label>
+                </td>
+            </tr>
+            -->
+            <tr>
+    <td><label>Is Employee Married?</label></td>
+    <td>
+        <input type="radio" id="marriedStatusTrue" th:field="*{empMarriedStatus}" value="true" />
+        <label for="marriedStatusTrue">Yes</label>
+        <input type="radio" id="marriedStatusFalse" th:field="*{empMarriedStatus}" value="false" />
+        <label for="marriedStatusFalse">No</label>
+    </td>
+</tr>
+        </table>
+        <br><button type="submit">Submit</button>
+    </form>
+</body>
+</html>

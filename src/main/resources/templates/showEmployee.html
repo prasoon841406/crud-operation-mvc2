@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <style>
+    	.table{
+    		
+    		margin-left: auto;
+            margin-right: auto;
+            background-color:rgb(255, 255, 136);
+    	}
+    	.body
+    	{
+    	text-align: center;
+    	font-style: inherit;
+    	background-color: gray;
+    	}
+    	
+    	
+    	
+    </style>
+</head>
+<body class="body">
+
+    <h2>Employee List</h2>
+     <br><a th:href="@{/addEmployee}"class="btn btn-info"><i class="bi bi-house-fill"></i></a>
+    
+    
+    <table border="2" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Marital Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.empId}"></td>
+                <td th:text="${employee.empName}"></td>
+                <td th:text="${employee.empAddress}"></td>
+                <td th:text="${employee.empEmail}"></td>
+                <td th:text="${employee.empMobile}"></td>
+                <td th:text="${employee.empGender}"></td>
+                <td th:text="${#dates.format(employee.empDOB, 'yyyy-MM-dd')}"></td>
+                <td th:text="${employee.empMarriedStatus != null ? (employee.empMarriedStatus ? 'Married' : 'Single') : 'Unknown'}"></td>
+                <td><a th:href="@{/edit/{id}(id=${employee.empId})}"class="btn btn-info"><i class="bi bi-pencil-square"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br><a th:href="@{/addEmployee}"class="btn btn-info"><i class="bi bi-plus-square-fill"></i></a>
+    
+</body>
+</html>

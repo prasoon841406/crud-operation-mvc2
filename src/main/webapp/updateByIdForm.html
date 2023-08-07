@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <style>
+    	body{
+    		text-align: center;
+    		
+    		
+    	}
+    	.form{
+    		margin-left: auto;
+            margin-right: auto;
+    	}
+    	.table{
+    		margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+    	}
+    </style>
+</head>
+<body>
+	<h1>Employee Form</h1>
+    <a th:href="@{/showEmployee}">Show Employee</a><br><br>
+    <form th:action="@{/updateById}" th:object="${employee}" method="post" class="form">
+    
+        <table class="table" border="3">
+            <tr>
+                <td><label for="empId">Employee ID:</label></td>
+                <td><input type="text" id="empId" th:field="*{empId}" required></td>
+            </tr>
+        </table>
+        <br><button type="submit">Submit</button>
+    </form>
+</body>
+</html>

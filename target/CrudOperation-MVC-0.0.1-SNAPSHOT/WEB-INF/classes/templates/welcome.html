@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:spring="http://www.springframework.org/tags">
+
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<style>
+	.body{
+		text-align: center;
+		background-color: cyan;
+	}
+	
+</style>
+</head>
+<body>
+	<h1>Welcome to Employee Management System</h1>
+
+	<a th:href="@{/addEmployee}">Add Employee</a> 
+	
+	<a th:href="@{/showEmployee}">Show Employee</a>
+	
+</body>
+</html>

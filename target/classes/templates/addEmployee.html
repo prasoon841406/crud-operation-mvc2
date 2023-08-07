@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .form {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+        }
+    </style>
+    <script th:inline="javascript">
+        function showEditForm(empId, empName, empAddress, empEmail,empMobile,empGender,empDOB,empMarriedStatus) {
+            // Populate the edit form with employee data
+            document.getElementById("editEmpId").value = empId;
+            document.getElementById("editEmpName").value = empName;
+            document.getElementById("editEmpAddress").value = empAddress;
+            document.getElementById("editEmpEmail").value = empEmail;
+            document.getElementById("editEmpMobile").value = empMobile;
+            document.getElementById("editEmpGender").value = empGender;
+            document.getElementById("editEmpDOB").value = empDOB;
+            document.getElementById("editEmpMarriedStatus").value = empMarriedStatus;
+
+            // Populate other fields as needed
+
+            // Show the edit form
+            document.getElementById("editForm").style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+<h1>Employee Form</h1>
+<a th:href="@{/showEmployee}">Show Employee</a><br><br>
+<form th:action="@{/saveEmployee}" th:object="${employee}" method="post" class="form">
+
+    <table class="table" border="3">
+        <tr>
+            <td><label for="empId">Employee ID:</label></td>
+            <td><input type="text" id="empId" th:field="*{empId}" required></td>
+        </tr>
+        <tr>
+            <td><label for="empName">Employee Name:</label></td>
+            <td><input type="text" id="empName" th:field="*{empName}" required></td>
+        </tr>
+        <tr>
+            <td><label for="empAddress">Employee Address:</label></td>
+            <td><input type="text" id="empAddress" th:field="*{empAddress}" required></td>
+        </tr>
+        <!-- Add other input fields here -->
+	<tr>
+                <td><label for="empEmail">Employee Email:</label></td>
+                <td><input type="email" id="empEmail" th:field="*{empEmail}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empMobile">Employee Mobile:</label></td>
+                <td><input type="text" id="empMobile" th:field="*{empMobile}" required></td>
+            </tr>
+            <tr>
+                <td><label>Employee Gender:</label></td>
+                <td>
+                    <select id="empGender" th:field="*{empGender}" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Is Employee Married?</label></td>
+                <td>
+                    <input type="radio" id="marriedStatusTrue" th:field="*{empMarriedStatus}" value="true" />
+                    <label for="marriedStatusTrue">Yes</label>
+                    <input type="radio" id="marriedStatusFalse" th:field="*{empMarriedStatus}" value="false" />
+                    <label for="marriedStatusFalse">No</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="empDOB">Employee Date of Birth:</label></td>
+                <td><input type="date" id="empDOB" name="empDOB" th:field="*{empDOB}" required></td>
+            </tr>
+    </table>
+    <br><button type="submit">Submit</button>
+</form>
+
+<!-- Hidden edit form -->
+<form th:id="editForm" style="display: none;" th:action="@{/saveUpdateEmployee}" th:object="${employee}" method="post" class="form">
+    <input type="hidden" id="editEmpId" th:field="*{empId}">
+    <table class="table" border="3">
+        <tr>
+            <td><label for="editEmpName">Employee Name:</label></td>
+            <td><input type="text" id="editEmpName" th:field="*{empName}" required></td>
+        </tr>
+        <tr>
+            <td><label for="editEmpAddress">Employee Address:</label></td>
+            <td><input type="text" id="editEmpAddress" th:field="*{empAddress}" required></td>
+        </tr>
+        <!-- Add other edit input fields here -->
+		<tr>
+                <td><label for="empEmail">Employee Email:</label></td>
+                <td><input type="email" id="empEmail" th:field="*{empEmail}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empMobile">Employee Mobile:</label></td>
+                <td><input type="text" id="empMobile" th:field="*{empMobile}" required></td>
+            </tr>
+            <tr>
+                <td><label>Employee Gender:</label></td>
+                <td>
+                    <select id="empGender" th:field="*{empGender}" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Is Employee Married?</label></td>
+                <td>
+                    <input type="radio" id="marriedStatusTrue" th:field="*{empMarriedStatus}" value="true" />
+                    <label for="marriedStatusTrue">Yes</label>
+                    <input type="radio" id="marriedStatusFalse" th:field="*{empMarriedStatus}" value="false" />
+                    <label for="marriedStatusFalse">No</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="empDOB">Employee Date of Birth:</label></td>
+                <td><input type="date" id="empDOB" name="empDOB" th:field="*{empDOB}" required></td>
+            </tr>
+    </table>
+    <br><button type="submit">Save Changes</button>
+</form>
+
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <style>
+    	body{
+    		text-align: center;
+    		
+    		
+    	}
+    	.form{
+    		margin-left: auto;
+            margin-right: auto;
+    	}
+    	.table{
+    		margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+    	}
+    </style>
+</head>
+<body >
+    <h1>Employee Form</h1>
+    <a th:href="@{/showEmployee}">Show Employee</a><br><br>
+    <form th:action="@{/saveEmployee}" th:object="${employee}" method="post" class="form">
+    
+        <table class="table" border="3">
+            <tr>
+                <td><label for="empId">Employee ID:</label></td>
+                <td><input type="text" id="empId" th:field="*{empId}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empName">Employee Name:</label></td>
+                <td><input type="text" id="empName" th:field="*{empName}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empAddress">Employee Address:</label></td>
+                <td><input type="text" id="empAddress" th:field="*{empAddress}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empEmail">Employee Email:</label></td>
+                <td><input type="email" id="empEmail" th:field="*{empEmail}" required></td>
+            </tr>
+            <tr>
+                <td><label for="empMobile">Employee Mobile:</label></td>
+                <td><input type="text" id="empMobile" th:field="*{empMobile}" required></td>
+            </tr>
+            <tr>
+                <td><label>Employee Gender:</label></td>
+                <td>
+                    <select id="empGender" th:field="*{empGender}" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Is Employee Married?</label></td>
+                <td>
+                    <input type="radio" id="marriedStatusTrue" th:field="*{empMarriedStatus}" value="true" />
+                    <label for="marriedStatusTrue">Yes</label>
+                    <input type="radio" id="marriedStatusFalse" th:field="*{empMarriedStatus}" value="false" />
+                    <label for="marriedStatusFalse">No</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="empDOB">Employee Date of Birth:</label></td>
+                <td><input type="date" id="empDOB" name="empDOB" th:field="*{empDOB}" required></td>
+            </tr>
+        </table>
+        <br><button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+ -->
